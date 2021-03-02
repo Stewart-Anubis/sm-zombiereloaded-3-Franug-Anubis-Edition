@@ -449,6 +449,9 @@ InfectOnRoundFreezeEnd()
 		
 		// Display initial tick.
 		InfectCountdown(tInfectCountdown);
+
+		// Prevent round end on countdown
+		ServerCommand("mp_ignore_round_win_conditions 1");
 	}
 }
 
