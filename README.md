@@ -43,6 +43,9 @@
 ### No player vs player collisions.
 "zr_noblock"		"1",			"Removes player vs. player collisions.. [ 0=Off 1=On ]"
 
+### Global multiplier for knockback.
+"zr_knockback_multiplier"		"1.0",			"Global multiplier for knockback. Default '1.0'"
+
 ### Please remove these plugins if you use them, to test!
 
 * autozspawn.smx
@@ -53,6 +56,10 @@
 * zspawnfranug.smx
 * zr_no_alone_infection.smx
 * noblock.smx
+
+### Warm up in CS:GO
+If you want warm up round work perfectly, Use `optional plugins/ze_warmup.smx`
+It can prevent warm up will not end in some map
 
 ### All natives have been implemented, if using with these plugins there may be conflicts! But if you are going to continue using some of the plugins, please disable the native for the plugin in zombiereloaded.
 

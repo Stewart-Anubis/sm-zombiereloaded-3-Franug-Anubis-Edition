@@ -50,8 +50,6 @@ RoundStartOnClientSpawn(client)
  */
 RoundStartOnRoundStart()
 {
-	ServerCommand("mp_ignore_round_win_conditions 1");
-	
 	// Print round objective to all clients.
 	TranslationPrintToChatAll(true, false, "General round objective");
 	

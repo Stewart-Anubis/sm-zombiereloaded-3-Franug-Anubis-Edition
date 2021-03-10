@@ -199,7 +199,8 @@ enum CvarsList
 	Handle:CVAR_ROUNDEND_SOUNDS,
 	Handle:CVAR_ROUNDEND_SOUNDS_DEFAULT,
 	Handle:CVAR_VOICECOUNT_DEFAULT,
-	Handle:CVAR_VOLUME_DEFAULT
+	Handle:CVAR_VOLUME_DEFAULT,
+	Handle:CVAR_KNOCKBACK_MULTIPLIER
 }
 
 /**
@@ -212,7 +213,7 @@ new g_hCvarsList[CvarsList];
  */
 new Handle:g_hAutoTeamBalance = INVALID_HANDLE;
 new Handle:g_hLimitTeams = INVALID_HANDLE;
-new Handle:g_hRestartGame = INVALID_HANDLE;
+//new Handle:g_hRestartGame = INVALID_HANDLE;
 // Force teams Bool.
 new bool:started = false;
 /**
@@ -227,7 +228,7 @@ CvarsInit()
 	// Retrieve handles of CS:S cvars.
 	g_hAutoTeamBalance = FindConVar("mp_autoteambalance");
 	g_hLimitTeams = FindConVar("mp_limitteams");
-	g_hRestartGame = FindConVar("mp_restartgame");
+	//g_hRestartGame = FindConVar("mp_restartgame");
 	
 	// Create zombiereloaded cvars.
 	CvarsCreate();
@@ -566,6 +567,7 @@ CvarsCreate()
 	g_hCvarsList[CVAR_VOICECOUNT_DEFAULT]							  =	CreateConVar("zr_voice_count_default",			 "1",	"Default countdown voice. ['1' = Mem  | '2' = Woman!] Default 1");
 	g_hCvarsList[CVAR_VOLUME_DEFAULT]							  =	CreateConVar("zr_volume_default",			 "0.5",	"Default volume Zr Sounds. Default '0.5'");
 	
+	g_hCvarsList[CVAR_KNOCKBACK_MULTIPLIER]	 =	CreateConVar("zr_knockback_multiplier",	"1.0",			"Multiplier for knockback");
 	
 	// Auto-generate config file if it doesn't exist, then execute.
 	AutoExecConfig(true, "zombiereloaded", "sourcemod/zombiereloaded");
@@ -584,7 +586,7 @@ CvarsHook(bool:unhook = false)
 		// Unhook all cvars.
 		UnhookConVarChange(g_hAutoTeamBalance, CvarsHookLocked);
 		UnhookConVarChange(g_hLimitTeams, CvarsHookLocked);
-		UnhookConVarChange(g_hRestartGame, CvarsHookRestartGame);
+		//UnhookConVarChange(g_hRestartGame, CvarsHookRestartGame);
 		
 		UnhookConVarChange(g_hCvarsList[CVAR_VOL], VolEnabledChanged);
 		
@@ -599,7 +601,7 @@ CvarsHook(bool:unhook = false)
 	// Hook cvar to prevent it from changing.
 	HookConVarChange(g_hAutoTeamBalance, CvarsHookLocked);
 	HookConVarChange(g_hLimitTeams, CvarsHookLocked);
-	HookConVarChange(g_hRestartGame, CvarsHookRestartGame);
+	//HookConVarChange(g_hRestartGame, CvarsHookRestartGame);
 	
 	HookConVarChange(g_hCvarsList[CVAR_VOL], VolEnabledChanged);
 }
@@ -653,7 +655,7 @@ public CvarsHookLocked(Handle:cvar, const String:oldvalue[], const String:newval
  * @param convar	The cvar handle.
  * @param oldvalue  The value before the attempted change.
  * @param newvalue  The new value.
- */
+
 public CvarsHookRestartGame(Handle:cvar, const String:oldvalue[], const String:newvalue[])
 {
 	// Prevent round restart.
@@ -672,3 +674,4 @@ public CvarsHookRestartGame(Handle:cvar, const String:oldvalue[], const String:n
 	// If log flag check fails, then don't log.
 	LogEvent(false, LogType_Normal, LOG_CORE_EVENTS, LogModule_Cvars, "Restart Game", "\"mp_restartgame\" was caught and blocked, commencing round.");
 }
+ */

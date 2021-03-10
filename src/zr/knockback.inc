@@ -127,6 +127,8 @@ KnockbackOnClientHurt(client, attacker, const String:weapon[], hitgroup, dmg_hea
 		// Apply multiplier if client on air
 		if(GetEntPropEnt(client, Prop_Send, "m_hGroundEntity") == -1) knockback *= GetConVarFloat(g_hCvarsList[CVAR_CLASSES_CSGO_KNOCKBACK_AIRMULTIPLIER]);
 	}
+
+	knockback *= GetConVarFloat(g_hCvarsList[CVAR_KNOCKBACK_MULTIPLIER]);
 	
 	// Apply knockback.
 	KnockbackSetVelocity(client, attackerloc, clientloc, knockback);
